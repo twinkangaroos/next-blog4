@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "nextblog4",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-02-15T03:01:13.269Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authnextblog453f1f0b9",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "appsync:GraphQL",
+            "Resource": [
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Todo/*",
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Query/fields/getTodo",
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Query/fields/listTodos",
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Mutation/fields/createTodo",
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Mutation/fields/updateTodo",
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Mutation/fields/deleteTodo",
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Subscription/fields/onCreateTodo",
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Subscription/fields/onUpdateTodo",
+                "arn:aws:appsync:ap-northeast-1:317057939332:apis/la4o2odm3fexbp24wd5reoglgy/types/Subscription/fields/onDeleteTodo"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
