@@ -1,26 +1,26 @@
 'use client'
-import { Amplify } from 'aws-amplify'
-import type { WithAuthenticatorProps } from '@aws-amplify/ui-react'
-import { withAuthenticator } from '@aws-amplify/ui-react'
-import '@aws-amplify/ui-react/styles.css'
+import { Amplify } from 'aws-amplify';
+// import type { WithAuthenticatorProps } from '@aws-amplify/ui-react';
+// import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-import { useState, useEffect } from 'react'
-import { generateClient } from 'aws-amplify/api'
-import { createTodo } from '@/graphql/mutations'
-import { listTodos } from '@/graphql/queries'
+import { useState, useEffect } from 'react';
+import { generateClient } from 'aws-amplify/api';
+import { createTodo, updateTodo, deleteTodo } from '@/graphql/mutations';
+import { listTodos } from '@/graphql/queries';
 
-import config from '@/amplifyconfiguration.json'
-Amplify.configure(config)
+import config from '@/amplifyconfiguration.json';
+Amplify.configure(config);
 
-export function App({ signOut, user }: WithAuthenticatorProps) {
+export function App() {
     
     const [todoName, setTodoName] = useState("")
-    const [todos, setTodos] = useState<any[]>([])
+    const [todos, setTodos] = useState<any[]>([]);
 
     useEffect(()=> {
         const fetchData = async () => {
-            const client = generateClient()
-            const ret = await client.graphql({ query: listTodos })
+            const client = generateClient();
+            const ret = await client.graphql({ query: listTodos });
             setTodos(ret.data.listTodos.items)
             //console.log("todos", ret.data.listTodos.items)
         }
@@ -34,7 +34,7 @@ export function App({ signOut, user }: WithAuthenticatorProps) {
 
     // Todo追加ボタンクリック時
     async function addTodo() {
-        const client = generateClient()
+        const client = generateClient();
         /* create a todo */
         const newData = await client.graphql({
             query: createTodo,
@@ -44,8 +44,8 @@ export function App({ signOut, user }: WithAuthenticatorProps) {
                     "description": ''
                 }
             }
-        })
-        console.log('Created Todo: ', newData)
+        });
+        console.log('Created Todo: ', newData);
     }
 
     return (
@@ -58,10 +58,10 @@ export function App({ signOut, user }: WithAuthenticatorProps) {
                     marginTop: '100px'
                 }}
             >
-                <div style={{ marginBottom: "30px" }}>
+                {/* <div style={{ marginBottom: "30px" }}>
                     <h1>Hello {user?.username}</h1>
                     <button onClick={signOut}>Sign out</button>
-                </div>
+                </div> */}
                 <div>
                     <input name="todoName" placeholder="Add a todo" onChange={(e) => todoNameChange(e)} />
                     <button onClick={addTodo}>Add</button>
@@ -73,11 +73,11 @@ export function App({ signOut, user }: WithAuthenticatorProps) {
                 )}
                <ul>
                     {todos?.map((todo) => {
-                        return <li key={todo.id} style={{ listStyle: 'none' }}>{todo.name}</li>
+                        return <li key={todo.id} style={{ listStyle: 'none' }}>{todo.name}</li>;
                     })}
                 </ul>
             </div>
         </>
-    )
+    );
 }
-export default withAuthenticator(App)
+export default App;
