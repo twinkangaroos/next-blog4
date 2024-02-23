@@ -20,7 +20,11 @@ export function App({ signOut, user }: WithAuthenticatorProps) {
     useEffect(()=> {
         const fetchData = async () => {
             const client = generateClient()
-            const ret = await client.graphql({ query: listTodos })
+            const ret = await client.graphql({ 
+                query: listTodos,
+                // authMode: 'iam'
+                authMode: 'userPool'
+            })
             setTodos(ret.data.listTodos.items)
             //console.log("todos", ret.data.listTodos.items)
         }
@@ -43,7 +47,8 @@ export function App({ signOut, user }: WithAuthenticatorProps) {
                     "name": todoName,
                     "description": ''
                 }
-            }
+            },
+            authMode: 'userPool'
         })
         console.log('Created Todo: ', newData)
     }

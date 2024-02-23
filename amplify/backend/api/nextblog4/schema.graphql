@@ -12,6 +12,7 @@ type Todo
   @auth(rules: [
     #{ allow: private, provider: iam, operations: [read, create, update, delete] }, # Login = all operations ok
     { allow: owner, provider: userPools }, # Login = own data operations ok
+    { allow: groups, groups: ["Admin"] } # Admin all operations ok
     { allow: public, provider: iam, operations: [read] }, # Non-logged in user cannot write.
   ]) {
   id: ID!
