@@ -11,11 +11,10 @@ type Todo
   @model 
   @auth(rules: [
     #{ allow: private, provider: iam, operations: [read, create, update, delete] }, # Login = all operations ok
-    { allow: owner, provider: userPools, ownerField: "author" }, # Login = own data operations ok
+    { allow: owner, provider: userPools }, # Login = own data operations ok
     { allow: public, provider: iam, operations: [read] }, # Non-logged in user cannot write.
   ]) {
   id: ID!
   name: String!
   description: String
-  author: String
 }

@@ -15,6 +15,7 @@ export const getTodo = /* GraphQL */ `query GetTodo($id: ID!) {
     description
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -31,6 +32,7 @@ export const listTodos = /* GraphQL */ `query ListTodos(
       description
       createdAt
       updatedAt
+      owner
       __typename
     }
     nextToken
